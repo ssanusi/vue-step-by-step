@@ -34,10 +34,37 @@
            <li v-for="(task, index) in incompleteTask" :key="index">{{ task.description }}</li>
        </ul>
 
+       <h4>This is example of Compnents <code>Vue.components</code></h4>
+       <h3>List of schools</h3>
+       <school-list></school-list>
+
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
+
+     Vue.component('school-list', {
+     template: `
+        <div>
+            <school v-for="school in schools">{{ school }}</school>
+        <div>
+        `,
+        data() {
+            return {
+                schools : [
+                    "Haske School",
+                    "GSS Minna",
+                    "GTC Izom",
+                    "FUT Minna"
+                ]
+            }
+        },
+     });
+
+     Vue.component('school', {
+     template: '<li><slot></slot></li>'
+     });
+
     new Vue({
         el: '#root',
         data : {
@@ -54,7 +81,8 @@
             { description: 'write code', completed : true},
             { description: 'pray', completed : false},
             { description: 'sleep after', completed : true}
-        ]
+        ],
+
         },
         methods : {
             addName(){
