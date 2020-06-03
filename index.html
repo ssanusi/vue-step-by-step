@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Vuejs</title>
+</head>
+<body>
+    <div id="root">
+        <!-- Vmodel Example -->
+        <h4>This is example of <code>v-model</code> directives</h4>
+       <input type='text' id='input' v-model="message" />
+       <p>The value of the input is {{ message }}</p>
+
+       <!-- Vfor & Vtext directives -->
+       <!-- v-on on submit button -->
+       <h4>This is example of <code>v-for and v-text</code> directives</h4>
+       <ul>
+           <li v-for="name in names" v-text="name"></li>
+           <input type=text v-model="newName"/>
+           <button type="submit" @click="addName">add name</button>
+       </ul>
+
+       <h4>This is example of <code> v:bind and attribute and class binding </code> directive</h4>
+       <button type="submit" :title="title" >Bind me</button>
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#root',
+        data : {
+        message : 'Hello World',
+        newName : '',
+        names : ['sanusi', 'bashir', 'fatima', 'aisha', 'Tahir'  ],
+        title : 'Now the title is being handle fro javascript',
+        },
+        methods : {
+            addName(){
+                this.names.push(this.newName);
+                this.newName = '';
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
