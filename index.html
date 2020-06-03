@@ -24,6 +24,16 @@
        <h4>This is example of <code> v:bind and attribute and class binding </code> directive</h4>
        <button type="submit" :title="title" >Bind me</button>
 
+       <h4>This is example of <code>computed properties</code> used to filter incomplete task</h4>
+       <h3>All Task</h3>
+       <ul>
+           <li v-for="(task, index) in tasks" :key="index">{{ task.description }}</li>
+       </ul>
+       <h3>All Incomplete Task</h3>
+       <ul>
+           <li v-for="(task, index) in incompleteTask" :key="index">{{ task.description }}</li>
+       </ul>
+
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,13 +45,29 @@
         newName : '',
         names : ['sanusi', 'bashir', 'fatima', 'aisha', 'Tahir'  ],
         title : 'Now the title is being handle fro javascript',
+        tasks: [
+            { description: 'Go to the store', completed : true},
+            { description: 'finish screencast', completed : true},
+            { description: 'make donation', completed : false},
+            { description: 'check inbox', completed : true},
+            { description: 'eat dinner', completed : false},
+            { description: 'write code', completed : true},
+            { description: 'pray', completed : false},
+            { description: 'sleep after', completed : true}
+        ]
         },
         methods : {
             addName(){
                 this.names.push(this.newName);
                 this.newName = '';
             }
-        }
+        },
+
+        computed: {
+            incompleteTask(){
+               return this.tasks.filter(task => !task.completed)
+            }
+        },
     })
 
 </script>
